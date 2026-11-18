@@ -14,33 +14,25 @@ fn prompt() -> String {
     write
 }
 
-fn path_name() -> String {
-    let mut write_path = String::new();
-    io::stdin()
-        .read_line(&mut write_path)
-        .expect("failed to read line");
-    write_path
-}
-
 fn main() {
     println!("What would you like to do?");
     println!("1. Write a new file\n2. Open an existing file");
-    let choice = prompt();
-    if choice.trim() == "1" {
-        let file_name = get_file_name();
-        file_writing(&file_name);
-    } else if choice.trim() == "2" {
-        let file_name = choose_file();
-        file_open(&file_name);
-    } else {
-        println!("Invalid input.")
+    let choice = prompt().trim().to_lowercase();
+    match choice.as_str() {
+        "1" | "one" => {
+            let file_name = get_file_name();
+            file_writing(&file_name);
+        }
+        "2" | "two" => {
+            let file_name = choose_file();
+            file_open(&file_name);
+        }
+        _ => println!("Invalid output."),
     }
 }
-
 fn file_writing(file_name: &str) {
     // file writing
     println!("Write your file name");
-    let _path_naming = path_name();
     let path = Path::new(&file_name);
     let display = path.display();
     println!("Contents will be written in {}", display);
@@ -103,3 +95,4 @@ fn choose_file() -> String {
     let choice: usize = prompt().trim().parse().expect("please enter a number");
     files[choice - 1].clone()
 }
+
