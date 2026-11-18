@@ -1,0 +1,1 @@
+A small project im working on for my rust journey. This will be maintained by me for a short period of time and i don't expect a majority or anyone at all to use it. Treat this as an exercise. I will add documentation about the code later.
